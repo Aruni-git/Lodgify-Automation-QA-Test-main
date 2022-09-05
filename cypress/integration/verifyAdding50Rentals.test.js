@@ -1,0 +1,33 @@
+import { onPricingPage } from "../support/pageObjects/pricingPage";
+
+const rentals = 50
+const starter_Package = 64
+const professional_Package = 375
+const ultimate_Package = 525
+
+context("Lodgify pricing page", () => {
+  it("Should have the right title", () => {
+    onPricingPage.navigateToPricingPage();
+  });
+
+  it("should be able to add rentals", () => {
+    onPricingPage.addRentals(rentals);
+  });
+
+  it("select yearly plan", () => {
+    onPricingPage.selectyearlyPlan();
+  });
+
+  it("verify starter package for yearly plan", () => {
+    onPricingPage.verifyStarterPackage(starter_Package);
+  });
+
+  it("verify proffessional package for yearly plan", () => {
+    onPricingPage.verifyProfessionalPackage(professional_Package);
+  });
+
+  it("verify ultimate package for yearly plan", () => {
+    onPricingPage.verifyUltimatePackage(ultimate_Package);
+  });
+
+});

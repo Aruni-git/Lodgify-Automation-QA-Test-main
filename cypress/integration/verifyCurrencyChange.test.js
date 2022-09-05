@@ -1,0 +1,38 @@
+import { onPricingPage } from "../support/pageObjects/pricingPage";
+
+const rentals = 25
+const currency = 'gbp'
+const starter_Package = 41
+const professional_Package = 171
+const ultimate_Package = 246
+
+
+context("Lodgify pricing page", () => {
+  it("Should have the right title", () => {
+    onPricingPage.navigateToPricingPage();
+  });
+
+  it("should be able to add rentals", () => {
+    onPricingPage.addRentals(rentals);
+  });
+
+  it("select yearly plan", () => {
+    onPricingPage.selectyearlyPlan();
+  });
+
+  it("select currency dropdown", () => {
+    onPricingPage.changeCurrecyToPound(currency);
+  });
+
+  it("verify starter packaage for yearly plan GBP", () => {
+    onPricingPage.verifyStarterPackage(starter_Package);
+  });
+
+  it("verify proffessional packaage for yearly plan GBP", () => {
+    onPricingPage.verifyProfessionalPackage(professional_Package);
+  });
+
+  it("verify ultimate packaage for yearly plan GBP", () => {
+    onPricingPage.verifyUltimatePackage(ultimate_Package);
+  });
+});
