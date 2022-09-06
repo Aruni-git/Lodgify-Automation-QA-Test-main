@@ -1,9 +1,12 @@
 import { onContactPage } from "../support/pageObjects/contactPage";
 
-const rentals = 65
-const starter_Package = 41
-const professional_Package = 171
-const ultimate_Package = 246
+const name = "Aruni"
+const email = "aruniscrabble@yahoo.com"
+const phone = +9471156455
+const expectedText_name = 'Name is mandatory'
+const expectedText_email = 'Email is mandatory'
+const expectedText_phone ='Phone is mandatory'
+const expectedText_comment ='Comment is mandatory'
 
   describe('Lodgify contact page', () =>{
 
@@ -14,46 +17,50 @@ const ultimate_Package = 246
 
   it("verify name is mandatory", () => {
 
-    onContactPage.addEmail()
-    onContactPage.addPhone()
+    onContactPage.addEmail(email)
+    onContactPage.addPhone(phone)
     onContactPage.addcomment()
     onContactPage.clickSubmitButton()
-    onContactPage.verifyNameField()
+    onContactPage.verifyNameField(expectedText_name)
     
 
   });
 
   // it("verify email is mandatory", () => {
 
-  //   onContactPage.addName()
-  //   onContactPage.addPhone()
+  //   onContactPage.addName(name)
+  //   onContactPage.addPhone(phone)
+  //   onContactPage.addcomment()
   //   onContactPage.clickSubmitButton()
-  //   onContactPage.verifyEmail()
+  //   onContactPage.verifyEmail(expectedText_email)
     
 
   // });
 
   // it("verify phone is mandatory", () => {
 
-  //   onContactPage.addName()
-  //   onContactPage.addEmail()
-  //   onContactPage.addPhone()
+  //   onContactPage.addName(name)
+  //   onContactPage.addEmail(email)
+  //   onContactPage.addcomment()
   //   onContactPage.clickSubmitButton()
-  //   onContactPage.verifyPhoneNumber()
+  //   onContactPage.verifyPhoneNumber(expectedText_phone)
    
 
   // });
 
-//   it("verify comment is mandatory", () => {
-//     //onContactPage.clickSubmitButton()
-//     onContactPage.verifyComment()
+  // it("verify comment is mandatory", () => {
+  //   onContactPage.addName(name)
+  //   onContactPage.addEmail(email)
+  //   onContactPage.addPhone(phone)
+  //   onContactPage.clickSubmitButton()
+  //   onContactPage.verifyComment(expectedText_comment)
     
-//   });
+  // });
 
-  it("verify date picker", () => {
-    //onContactPage.clickSubmitButton()
-    onContactPage.addDate()
+  // it("verify date picker", () => {
+  //   //onContactPage.clickSubmitButton()
+  //   onContactPage.addDate()
     
-  });
+  // });
  
 });
