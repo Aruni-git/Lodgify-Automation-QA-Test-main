@@ -1,10 +1,10 @@
 import { LoremIpsum } from "lorem-ipsum";
 
 export class contactPage {
-  navigateToContactPage() {
+  navigateToContactPage(contactUrl, txtContact) {
     //navigates to contact page
-    cy.visit("http://localhost:3000/Contact.html");
-    cy.title().should("include", "Contact");
+    cy.visit(contactUrl);
+    cy.title().should("include", txtContact);
   }
 
   addName(name) {
@@ -36,7 +36,12 @@ export class contactPage {
     cy.get(".input > textarea").type(txtComment);
   }
 
-  addArrival_DepartureDates(arrivalMonth,departureMonth,arrivalDate,departureDate) {
+  addArrival_DepartureDates(
+    arrivalMonth,
+    departureMonth,
+    arrivalDate,
+    departureDate
+  ) {
     let date = new Date();
     let month = date.toLocaleDateString("default", { month: "long" });
     let yearOfDate = date.getFullYear();
@@ -49,23 +54,38 @@ export class contactPage {
 
     cy.get("div")
       .contains(currentMonth)
-      .then(
-        (dateAttribute) => {
-          if (currentMonth !== arrivalMonth) {
-            cy.get(
-              ".DayPickerNavigation_leftButton__horizontalDefault > .DayPickerNavigation_svg__horizontal"
-            ).click();
-            cy.selectMonth(currentMonth, arrivalMonth,arrivalDate,departureDate,departureMonth);
-            cy.get(
-              ".DayPickerNavigation_leftButton__horizontalDefault > .DayPickerNavigation_svg__horizontal"
-            ).click();
-            }   
-            //added in wrong place 
-            cy.xpath("//div[@class='CalendarMonth CalendarMonth_1']/div[contains(text(), '"+arrivalMonth+"')]/../table[@class='CalendarMonth_table CalendarMonth_table_1']//td[@aria-disabled='false' and contains(text(),'"+arrivalDate+"')] ").click();
-            cy.xpath("//div[@class='CalendarMonth CalendarMonth_1']/div[contains(text(), '"+departureMonth+"')]/../table[@class='CalendarMonth_table CalendarMonth_table_1']//td[@aria-disabled='false' and contains(text(),'"+departureDate+"')] ").click();
-          
+      .then((dateAttribute) => {
+        if (currentMonth !== arrivalMonth) {
+          cy.get(
+            ".DayPickerNavigation_leftButton__horizontalDefault > .DayPickerNavigation_svg__horizontal"
+          ).click();
+          cy.selectMonth(
+            currentMonth,
+            arrivalMonth,
+            arrivalDate,
+            departureDate,
+            departureMonth
+          );
+          // cy.get(
+          //   ".DayPickerNavigation_leftButton__horizontalDefault > .DayPickerNavigation_svg__horizontal"
+          // ).click();
+        } else {
+          cy.xpath(
+            "//div[@class='CalendarMonth CalendarMonth_1']/div[contains(text(), '" +
+              arrivalMonth +
+              "')]/../table[@class='CalendarMonth_table CalendarMonth_table_1']//td[@aria-disabled='false' and contains(text(),'" +
+              arrivalDate +
+              "')] "
+          ).click();
+          cy.xpath(
+            "//div[@class='CalendarMonth CalendarMonth_1']/div[contains(text(), '" +
+              departureMonth +
+              "')]/../table[@class='CalendarMonth_table CalendarMonth_table_1']//td[@aria-disabled='false' and contains(text(),'" +
+              departureDate +
+              "')] "
+          ).click();
         }
-      );
+      });
   }
 
   //departure date
@@ -75,7 +95,9 @@ export class contactPage {
     let month = date.toLocaleDateString("default", { month: "long" });
     let yearOfDate = date.getFullYear();
     let currentMonth = month + " " + yearOfDate;
-    cy.get('[aria-label="Arrival"]').click();
+
+    //click calender icon
+    // cy.get('[aria-label="Arrival"]').click();
 
     cy.get(
       '[class="CalendarMonthGrid_month__horizontal CalendarMonthGrid_month__horizontal_1"]>[class="CalendarMonth CalendarMonth_1"] > :nth-child(1)'
@@ -83,39 +105,44 @@ export class contactPage {
 
     cy.get("div")
       .contains(currentMonth)
-      .then(
-        (dateAttribute) => {
-          if (dateAttribute !== departureMonth) {
-            cy.get(
-              ".DayPickerNavigation_leftButton__horizontalDefault > .DayPickerNavigation_svg__horizontal"
-            ).click();
-            cy.random_string_gen();
-            cy.get(
-              ".DayPickerNavigation_leftButton__horizontalDefault > .DayPickerNavigation_svg__horizontal"
-            ).click();
-          
-          } else {
-            cy.get(
-              '[aria-label="Not available.Wednesday, June 14, 2022"]'
-            ).click();
-
-            
-          }
+      .then((dateAttribute) => {
+        if (dateAttribute !== departureMonth) {
+          cy.get(
+            ".DayPickerNavigation_leftButton__horizontalDefault > .DayPickerNavigation_svg__horizontal"
+          ).click();
+          cy.random_string_gen();
+          cy.get(
+            ".DayPickerNavigation_leftButton__horizontalDefault > .DayPickerNavigation_svg__horizontal"
+          ).click();
+        } else {
+          cy.get(
+            '[aria-label="Not available.Wednesday, June 14, 2022"]'
+          ).click();
         }
-        
-      );
+      });
   }
 
-  addDate2(arrivalMonth,departureMonth,arrivalDate,departureDate) {
-  
+  addDate2(arrivalMonth, departureMonth, arrivalDate, departureDate) {
     cy.get('[aria-label="Arrival"]').click();
 
     cy.get(
       '[class="CalendarMonthGrid_month__horizontal CalendarMonthGrid_month__horizontal_1"]>[class="CalendarMonth CalendarMonth_1"] > :nth-child(1)'
     ).invoke("show");
-    
-   cy.xpath("//div[@class='CalendarMonth CalendarMonth_1']/div[contains(text(), '"+arrivalMonth+"')]/../table[@class='CalendarMonth_table CalendarMonth_table_1']//td[@aria-disabled='false' and contains(text(),'"+arrivalDate+"')] ").click();
-   cy.xpath("//div[@class='CalendarMonth CalendarMonth_1']/div[contains(text(), '"+departureMonth+"')]/../table[@class='CalendarMonth_table CalendarMonth_table_1']//td[@aria-disabled='false' and contains(text(),'"+departureDate+"')] ").click();
+
+    cy.xpath(
+      "//div[@class='CalendarMonth CalendarMonth_1']/div[contains(text(), '" +
+        arrivalMonth +
+        "')]/../table[@class='CalendarMonth_table CalendarMonth_table_1']//td[@aria-disabled='false' and contains(text(),'" +
+        arrivalDate +
+        "')] "
+    ).click();
+    cy.xpath(
+      "//div[@class='CalendarMonth CalendarMonth_1']/div[contains(text(), '" +
+        departureMonth +
+        "')]/../table[@class='CalendarMonth_table CalendarMonth_table_1']//td[@aria-disabled='false' and contains(text(),'" +
+        departureDate +
+        "')] "
+    ).click();
   }
 
   clickSubmitButton() {

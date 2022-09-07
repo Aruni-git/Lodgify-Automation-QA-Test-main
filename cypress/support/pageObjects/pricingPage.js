@@ -1,9 +1,8 @@
 export class pricingPage {
-  
-  navigateToPricingPage() {
+  navigateToPricingPage(pricingUrl, txtPricing) {
     //navigates to pricing page
-    cy.visit("pricing.html");
-    cy.title().should("include", "Pricing");
+    cy.visit(pricingUrl);
+    cy.title().should("include", txtPricing);
   }
 
   addRentals(rentals) {
@@ -77,8 +76,8 @@ export class pricingPage {
   }
 
   //navigate to two year plan
-  navigateToTwoYearPlan() {
-    cy.visit("https://www.lodgify.com/pricing/#");
+  navigateToTwoYearPlan(url) {
+    cy.visit(url);
   }
 }
 

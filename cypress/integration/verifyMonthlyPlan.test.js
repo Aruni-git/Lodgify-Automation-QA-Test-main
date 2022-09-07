@@ -1,16 +1,18 @@
 import { onPricingPage } from "../support/pageObjects/pricingPage";
 
-const rentals = 63
-const starter_Package = 101
-const professional_Package = 648
-const ultimate_Package = 889
-const txtStarter = 'Starter'
-const txtProfessional = 'Professional'
-const txtUltimate = 'Ultimate'
+const rentals = 63;
+const starter_Package = 101;
+const professional_Package = 648;
+const ultimate_Package = 889;
+const txtStarter = "Starter";
+const txtProfessional = "Professional";
+const txtUltimate = "Ultimate";
+const pricingUrl = "pricing.html";
+const txtPricing = "Pricing";
 
 context("Lodgify pricing page", () => {
   it("Should have the right title", () => {
-    onPricingPage.navigateToPricingPage();
+    onPricingPage.navigateToPricingPage(pricingUrl, txtPricing);
   });
 
   it("should be able to add rentals", () => {
@@ -22,15 +24,17 @@ context("Lodgify pricing page", () => {
   });
 
   it("verify starter package - monthly plan", () => {
-    onPricingPage.verifyStarterPackage(starter_Package,txtStarter);
+    onPricingPage.verifyStarterPackage(starter_Package, txtStarter);
   });
 
   it("verify proffessional package - monthly plan", () => {
-    onPricingPage.verifyProfessionalPackage(professional_Package,txtProfessional);
+    onPricingPage.verifyProfessionalPackage(
+      professional_Package,
+      txtProfessional
+    );
   });
 
   it("verify ultimate package - monthly plan", () => {
-    onPricingPage.verifyUltimatePackage(ultimate_Package,txtUltimate);
+    onPricingPage.verifyUltimatePackage(ultimate_Package, txtUltimate);
   });
-
 });
