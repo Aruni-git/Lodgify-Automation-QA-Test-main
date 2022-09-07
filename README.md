@@ -71,4 +71,13 @@ Using the provided steps, everything should work as explained, if not, make sure
 
 In case you change your configuration, make sure to change your package.json file to run accordingly to avoid any kind of troubles or incompatibilities.
 
+## Extra information
+
+Please change the port  on server.js to run your local machine. Currently is it set to 3000.
+Base url added in cypress.json file
+Tests can be found on cypress/integration
+Page objects can be found on cypress/support/pageobjects (page object pattern used in this test)
+Custome commands added in command.js
+
+
 Good luck!

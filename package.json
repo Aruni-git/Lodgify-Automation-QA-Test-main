@@ -10,12 +10,16 @@
   "author": "Lodgify QA Team",
   "license": "MIT",
   "devDependencies": {
-    "cypress": "^9.5.3"
+    "cypress": "^9.5.3",
+    "cypress-xpath": "^2.0.1"
   },
   "scripts": {
     "dev-server": "node server/server.js",
     "install-all": "npm install && cd server && npm install",
     "cy:open": "npx cypress open",
     "cy:run": "npx cypress run --browser chrome"
+  },
+  "dependencies": {
+    "lorem-ipsum": "^2.0.8"
   }
 }
