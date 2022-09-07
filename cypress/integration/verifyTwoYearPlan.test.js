@@ -4,6 +4,9 @@ const rentals = 33
 const starter_Package = 56
 const professional_Package = 273
 const ultimate_Package = 457
+const txtStarter = 'Starter'
+const txtProfessional = 'Professional'
+const txtUltimate = 'Ultimate'
 
 context("Lodgify pricing page", () => {
   it("Should have the right title", () => {
@@ -15,7 +18,7 @@ context("Lodgify pricing page", () => {
   });
 
   it("should be able navigate to the new page", () => {
-  cy.visit("https://www.lodgify.com/pricing/#")
+  onPricingPage.navigateToTwoYearPlan()
   });
 
   
@@ -24,14 +27,14 @@ context("Lodgify pricing page", () => {
   });
 
   it("verify starter package for two year plan", () => {
-    onPricingPage.verifyStarterPackage(starter_Package);
+    onPricingPage.verifyStarterPackage(starter_Package,txtStarter);
   });
 
   it("verify proffessional package for two year plan", () => {
-    onPricingPage.verifyProfessionalPackageForTwoYear(professional_Package);
+    onPricingPage.verifyProfessionalPackageForTwoYear(professional_Package,txtProfessional);
   });
 
   it("verify ultimate package for two year plan", () => {
-    onPricingPage.verifyUltimatePackage(ultimate_Package);
+    onPricingPage.verifyUltimatePackageForTwoYears(ultimate_Package,txtUltimate);
   });
 });

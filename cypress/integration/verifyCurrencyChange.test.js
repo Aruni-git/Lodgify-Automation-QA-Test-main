@@ -5,7 +5,9 @@ const currency = 'gbp'
 const starter_Package = 41
 const professional_Package = 171
 const ultimate_Package = 246
-
+const txtStarter = 'Starter'
+const txtProfessional = 'Professional'
+const txtUltimate = 'Ultimate'
 
 context("Lodgify pricing page", () => {
   it("Should have the right title", () => {
@@ -25,14 +27,14 @@ context("Lodgify pricing page", () => {
   });
 
   it("verify starter packaage for yearly plan GBP", () => {
-    onPricingPage.verifyStarterPackage(starter_Package);
+    onPricingPage.verifyStarterPackage(starter_Package,txtStarter);
   });
 
   it("verify proffessional packaage for yearly plan GBP", () => {
-    onPricingPage.verifyProfessionalPackage(professional_Package);
+    onPricingPage.verifyProfessionalPackage(professional_Package,txtProfessional);
   });
 
   it("verify ultimate packaage for yearly plan GBP", () => {
-    onPricingPage.verifyUltimatePackage(ultimate_Package);
+    onPricingPage.verifyUltimatePackage(ultimate_Package,txtUltimate);
   });
 });
